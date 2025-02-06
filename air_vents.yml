@@ -1,0 +1,136 @@
+#- GasVentPumpIgnoreThresholds
+#- GasVentPumpIgnoreGases
+#- GasVentPumpPowered
+#- GasVentPumpNonConnectable
+
+#- id: GasVentPumpIgnoreThresholds
+#- id: GasVentPumpIgnoreGases
+#- id: GasVentPumpPowered
+#- id: GasVentPumpNonConnectable
+
+
+- type: entity
+  parent: [GasVentPump, AtmosMonitorIgnoreBase]
+  id: GasVentPumpIgnoreThresholds
+  name: air vent
+  suffix: additional_ZO, ignore thresholds
+
+- type: entity
+  parent: GasVentPump
+  id: GasVentPumpIgnoreGases
+  name: air vent
+  suffix: additional_ZO, ignore gases
+  components:
+    - type: AtmosMonitor
+      temperatureThresholdId: stationTemperature
+      pressureThresholdId: stationPressure
+      gasThresholdPrototypes:
+        Oxygen: ignore
+        Nitrogen: ignore
+        CarbonDioxide: ignore
+        Plasma: ignore
+        Tritium: ignore
+        WaterVapor: ignore
+        Ammonia: ignore
+        NitrousOxide: ignore
+        Frezon: ignore
+
+- type: entity
+  parent: [GasUnaryBase, AirSensorBase]
+  id: GasVentPumpPowered
+  name: air vent
+  suffix: additional_ZO, always powered, turned off
+  description: Has a valve and a pump attached to it.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: ExtensionCableReceiver
+    - type: DeviceNetwork
+      prefix: device-address-prefix-vent
+    - type: Tag
+      tags:
+        - GasVent
+        - Unstackable
+    - type: Sprite
+      drawdepth: FloorObjects
+      sprite: _NF/Structures/Piping/Atmospherics/vent.rsi # Frontier
+      noRot: true # Frontier
+      layers:
+        - sprite: Structures/Piping/Atmospherics/pipe.rsi
+          state: pipeHalf
+          map: [ "enum.PipeVisualLayers.Pipe" ]
+        - state: vent_off
+          map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
+    - type: Appearance
+    - type: PipeColorVisuals
+    - type: GenericVisualizer
+      visuals:
+        enum.VentPumpVisuals.State:
+          enabled:
+            Off: { state: vent_off }
+            In: { state: vent_in }
+            Out: { state: vent_out }
+            Welded: { state: vent_welded }
+            Lockout: { state: vent_lockout }
+    - type: GasVentPump
+    - type: Construction
+      graph: GasUnary
+      node: ventpump
+    - type: VentCritterSpawnLocation
+    - type: AmbientSound
+      enabled: true
+      volume: -12
+      range: 5
+      sound:
+        path: /Audio/Ambience/Objects/gas_vent.ogg
+    - type: Weldable
+
+
+- type: entity
+  parent: [GasUnaryBase, AtmosMonitorDefaultBase]
+  id: GasVentPumpNonConnectable
+  name: air vent
+  suffix: additional_ZO, non connectable
+  description: Has a valve and a pump attached to it.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: ApcPowerReceiver
+    - type: ExtensionCableReceiver
+    - type: Tag
+      tags:
+        - GasVent
+        - Unstackable
+    - type: Sprite
+      drawdepth: FloorObjects
+      sprite: _NF/Structures/Piping/Atmospherics/vent.rsi # Frontier
+      noRot: true # Frontier
+      layers:
+        - sprite: Structures/Piping/Atmospherics/pipe.rsi
+          state: pipeHalf
+          map: [ "enum.PipeVisualLayers.Pipe" ]
+        - state: vent_off
+          map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
+    - type: Appearance
+    - type: PipeColorVisuals
+    - type: GenericVisualizer
+      visuals:
+        enum.VentPumpVisuals.State:
+          enabled:
+            Off: { state: vent_off }
+            In: { state: vent_in }
+            Out: { state: vent_out }
+            Welded: { state: vent_welded }
+            Lockout: { state: vent_lockout }
+    - type: GasVentPump
+    - type: Construction
+      graph: GasUnary
+      node: ventpump
+    - type: VentCritterSpawnLocation
+    - type: AmbientSound
+      enabled: true
+      volume: -12
+      range: 5
+      sound:
+        path: /Audio/Ambience/Objects/gas_vent.ogg
+    - type: Weldable

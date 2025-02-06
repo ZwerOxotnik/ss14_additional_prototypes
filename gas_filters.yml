@@ -1,0 +1,163 @@
+#- GasFilterAmmoniaOn
+#- GasFilterAmmoniaOnFlipped
+#- GasFilterCarbonDioxideOn
+#- GasFilterCarbonDioxideOnFlipped
+#- GasFilterFrezonOn
+#- GasFilterFrezonOnFlipped
+#- GasFilterNitrousOxideOn
+#- GasFilterNitrousOxideOnFlipped
+#- GasFilterPlasmaOn
+#- GasFilterPlasmaOnFlipped
+#- GasFilterTritiumOn
+#- GasFilterTritiumOnFlipped
+#- GasFilterWaterVaporOn
+#- GasFilterWaterVaporOnFlipped
+
+#- id: GasFilterAmmoniaOn
+#- id: GasFilterAmmoniaOnFlipped
+#- id: GasFilterCarbonDioxideOn
+#- id: GasFilterCarbonDioxideOnFlipped
+#- id: GasFilterFrezonOn
+#- id: GasFilterFrezonOnFlipped
+#- id: GasFilterNitrousOxideOn
+#- id: GasFilterNitrousOxideOnFlipped
+#- id: GasFilterPlasmaOn
+#- id: GasFilterPlasmaOnFlipped
+#- id: GasFilterTritiumOn
+#- id: GasFilterTritiumOnFlipped
+#- id: GasFilterWaterVaporOn
+#- id: GasFilterWaterVaporOnFlipped
+
+
+# Filter Ammonia
+- type: entity
+  parent: GasFilter
+  id: GasFilterAmmoniaOn
+  suffix: additional_ZO, On, Ammonia
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: GasFilter
+      startOnMapInit: true
+      filteredGas: Ammonia
+
+- type: entity
+  parent: [GasFilterFlipped, GasFilterAmmoniaOn]
+  id: GasFilterAmmoniaOnFlipped
+  suffix: additional_ZO, On, Ammonia, Flipped
+  placement:
+    mode: SnapgridCenter
+
+# Filter CarbonDioxide
+- type: entity
+  parent: GasFilter
+  id: GasFilterCarbonDioxideOn
+  suffix: additional_ZO, On, CarbonDioxide
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: GasFilter
+      startOnMapInit: true
+      filteredGas: CarbonDioxide
+
+- type: entity
+  parent: [GasFilterFlipped, GasFilterCarbonDioxideOn]
+  id: GasFilterCarbonDioxideOnFlipped
+  suffix: additional_ZO, On, CarbonDioxide, Flipped
+  placement:
+    mode: SnapgridCenter
+
+# Filter Frezon
+- type: entity
+  parent: GasFilter
+  id: GasFilterFrezonOn
+  suffix: additional_ZO, On, Frezon
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: GasFilter
+      startOnMapInit: true
+      filteredGas: Frezon
+
+- type: entity
+  parent: [GasFilterFlipped, GasFilterFrezonOn]
+  id: GasFilterFrezonOnFlipped
+  suffix: additional_ZO, On, Frezon, Flipped
+  placement:
+    mode: SnapgridCenter
+
+# Filter NitrousOxide
+- type: entity
+  parent: GasFilter
+  id: GasFilterNitrousOxideOn
+  suffix: additional_ZO, On, NitrousOxide
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: GasFilter
+      startOnMapInit: true
+      filteredGas: NitrousOxide
+
+- type: entity
+  parent: [GasFilterFlipped, GasFilterNitrousOxideOn]
+  id: GasFilterNitrousOxideOnFlipped
+  suffix: additional_ZO, On, NitrousOxide, Flipped
+  placement:
+    mode: SnapgridCenter
+
+# Filter Plasma
+- type: entity
+  parent: GasFilter
+  id: GasFilterPlasmaOn
+  suffix: additional_ZO, On, Plasma
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: GasFilter
+      startOnMapInit: true
+      filteredGas: Plasma
+
+- type: entity
+  parent: [GasFilterFlipped, GasFilterPlasmaOn]
+  id: GasFilterPlasmaOnFlipped
+  suffix: additional_ZO, On, Plasma, Flipped
+  placement:
+    mode: SnapgridCenter
+
+# Filter Tritium
+- type: entity
+  parent: GasFilter
+  id: GasFilterTritiumOn
+  suffix: additional_ZO, On, Tritium
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: GasFilter
+      startOnMapInit: true
+      filteredGas: Tritium
+
+- type: entity
+  parent: [GasFilterFlipped, GasFilterTritiumOn]
+  id: GasFilterTritiumOnFlipped
+  suffix: additional_ZO, On, Tritium, Flipped
+  placement:
+    mode: SnapgridCenter
+
+# Filter WaterVapor
+- type: entity
+  parent: GasFilter
+  id: GasFilterWaterVaporOn
+  suffix: additional_ZO, On, WaterVapor
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: GasFilter
+      startOnMapInit: true
+      filteredGas: WaterVapor
+
+- type: entity
+  parent: [GasFilterFlipped, GasFilterWaterVaporOn]
+  id: GasFilterWaterVaporOnFlipped
+  suffix: additional_ZO, On, WaterVapor, Flipped
+  placement:
+    mode: SnapgridCenter

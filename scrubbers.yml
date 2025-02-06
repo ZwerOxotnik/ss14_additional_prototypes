@@ -1,0 +1,278 @@
+#- GasVentScrubberPowered
+#- GasVentScrubberNonConnectable
+#- GasVentScrubberWide
+#- GasVentScrubberAll
+#- GasVentScrubberNoThresholds
+#- GasVentScrubberForTritGen
+#- GasVentScrubberAmmonia
+#- GasVentScrubberCarbonDioxide
+#- GasVentScrubberFrezon
+#- GasVentScrubberNitrogen
+#- GasVentScrubberNitrousOxide
+#- GasVentScrubberOxygen
+#- GasVentScrubberPlasma
+#- GasVentScrubberTritium
+#- GasVentScrubberWaterVapor
+
+#- id: GasVentScrubberPowered
+#- id: GasVentScrubberNonConnectable
+#- id: GasVentScrubberWide
+#- id: GasVentScrubberAll
+#- id: GasVentScrubberNoThresholds
+#- id: GasVentScrubberForTritGen
+#- id: GasVentScrubberAmmonia
+#- id: GasVentScrubberCarbonDioxide
+#- id: GasVentScrubberFrezon
+#- id: GasVentScrubberNitrogen
+#- id: GasVentScrubberNitrousOxide
+#- id: GasVentScrubberOxygen
+#- id: GasVentScrubberPlasma
+#- id: GasVentScrubberTritium
+#- id: GasVentScrubberWaterVapor
+
+
+- type: entity
+  parent: [GasUnaryBase, AirSensorBase]
+  id: GasVentScrubberPowered
+  name: air scrubber
+  description: Has a valve and pump attached to it.
+  suffix: additional_ZO, always powered, turned off
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: ExtensionCableReceiver
+    - type: DeviceNetwork
+      prefix: device-address-prefix-scrubber
+    - type: Tag
+      tags:
+        - GasScrubber
+        - Unstackable
+    - type: Sprite
+      drawdepth: FloorObjects
+      sprite: _NF/Structures/Piping/Atmospherics/scrubber.rsi # Frontier
+      noRot: true # Frontier
+      layers:
+        - sprite: Structures/Piping/Atmospherics/pipe.rsi
+          state: pipeHalf
+          map: [ "enum.PipeVisualLayers.Pipe" ]
+        - state: scrub_off
+          map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
+    - type: Appearance
+    - type: PipeColorVisuals
+    - type: GenericVisualizer
+      visuals:
+        enum.ScrubberVisuals.State:
+          enabled:
+            Off: { state: scrub_off }
+            Scrub: { state: scrub_on }
+            Siphon: { state: scrub_purge }
+            WideScrub: { state: scrub_wide }
+            Welded: { state: scrub_welded }
+    - type: AtmosDevice
+    - type: GasVentScrubber
+    - type: Construction
+      graph: GasUnary
+      node: ventscrubber
+    - type: AmbientSound
+      enabled: true
+      volume: -12
+      range: 5
+      sound:
+        path: /Audio/Ambience/Objects/gas_vent.ogg
+    - type: Weldable
+
+- type: entity
+  parent: [GasUnaryBase, AtmosMonitorDefaultBase]
+  id: GasVentScrubberNonConnectable
+  name: air scrubber
+  description: Has a valve and pump attached to it.
+  suffix: additional_ZO, non connectable
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: ApcPowerReceiver
+    - type: ExtensionCableReceiver
+    - type: Tag
+      tags:
+        - GasScrubber
+        - Unstackable
+    - type: Sprite
+      drawdepth: FloorObjects
+      sprite: _NF/Structures/Piping/Atmospherics/scrubber.rsi # Frontier
+      noRot: true # Frontier
+      layers:
+        - sprite: Structures/Piping/Atmospherics/pipe.rsi
+          state: pipeHalf
+          map: [ "enum.PipeVisualLayers.Pipe" ]
+        - state: scrub_off
+          map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
+    - type: Appearance
+    - type: PipeColorVisuals
+    - type: GenericVisualizer
+      visuals:
+        enum.ScrubberVisuals.State:
+          enabled:
+            Off: { state: scrub_off }
+            Scrub: { state: scrub_on }
+            Siphon: { state: scrub_purge }
+            WideScrub: { state: scrub_wide }
+            Welded: { state: scrub_welded }
+    - type: AtmosDevice
+    - type: GasVentScrubber
+    - type: Construction
+      graph: GasUnary
+      node: ventscrubber
+    - type: AmbientSound
+      enabled: true
+      volume: -12
+      range: 5
+      sound:
+        path: /Audio/Ambience/Objects/gas_vent.ogg
+    - type: Weldable
+
+- type: entity
+  parent: GasVentScrubber
+  id: GasVentScrubberWide
+  suffix: additional_ZO, wide
+  components:
+  - type: GasVentScrubber
+    wideNet: true # Air alarm with auto mode overrides filters with hardcoded defaults so default to widenet
+    filterGases:
+    - CarbonDioxide # filter out harmful gases
+    - Plasma
+    - Tritium
+    - WaterVapor
+    - Ammonia
+    - NitrousOxide
+    - Frezon
+
+- type: entity
+  parent: [AtmosMonitorIgnoreBase, GasVentScrubber]
+  id: GasVentScrubberAll
+  suffix: additional_ZO, filter out all
+  components:
+  - type: GasVentScrubber
+    wideNet: true
+    filterGases:
+    - Oxygen
+    - CarbonDioxide
+    - Plasma
+    - Nitrogen
+    - Tritium
+    - WaterVapor
+    - Ammonia
+    - NitrousOxide
+    - Frezon
+
+- type: entity
+  parent: [AtmosMonitorIgnoreBase, GasVentScrubber]
+  id: GasVentScrubberNoThresholds
+  suffix: additional_ZO, No thresholds
+  components:
+  - type: GasVentScrubber
+
+- type: entity
+  parent: [AtmosMonitorIgnoreBase, GasVentScrubber]
+  id: GasVentScrubberForTritGen
+  suffix: additional_ZO, ignore oxygen and plasma
+  components:
+  - type: GasVentScrubber
+    wideNet: true
+    filterGases:
+    - CarbonDioxide
+    - Nitrogen
+    - Tritium
+    - WaterVapor
+    - Ammonia
+    - NitrousOxide
+    - Frezon
+
+- type: entity
+  parent: [AtmosMonitorIgnoreBase, GasVentScrubber]
+  id: GasVentScrubberAmmonia
+  suffix: additional_ZO, Ammonia
+  components:
+  - type: GasVentScrubber
+    wideNet: true
+    filterGases:
+    - Ammonia
+
+- type: entity
+  parent: [AtmosMonitorIgnoreBase, GasVentScrubber]
+  id: GasVentScrubberCarbonDioxide
+  suffix: additional_ZO, CarbonDioxide
+  components:
+  - type: GasVentScrubber
+    wideNet: true
+    filterGases:
+    - CarbonDioxide
+
+- type: entity
+  parent: [AtmosMonitorIgnoreBase, GasVentScrubber]
+  id: GasVentScrubberFrezon
+  suffix: additional_ZO, Frezon
+  components:
+  - type: GasVentScrubber
+    wideNet: true
+    filterGases:
+    - Frezon
+
+- type: entity
+  parent: [AtmosMonitorIgnoreBase, GasVentScrubber]
+  id: GasVentScrubberNitrogen
+  suffix: additional_ZO, Nitrogen
+  components:
+  - type: GasVentScrubber
+    wideNet: true
+    filterGases:
+    - Nitrogen
+
+- type: entity
+  parent: [AtmosMonitorIgnoreBase, GasVentScrubber]
+  id: GasVentScrubberNitrousOxide
+  suffix: additional_ZO, NitrousOxide
+  components:
+  - type: GasVentScrubber
+    wideNet: true
+    filterGases:
+    - NitrousOxide
+
+- type: entity
+  parent: [AtmosMonitorIgnoreBase, GasVentScrubber]
+  id: GasVentScrubberOxygen
+  suffix: additional_ZO, Oxygen
+  components:
+  - type: GasVentScrubber
+    wideNet: true
+    filterGases:
+    - Oxygen
+
+- type: entity
+  parent: [AtmosMonitorIgnoreBase, GasVentScrubber]
+  id: GasVentScrubberPlasma
+  suffix: additional_ZO, Plasma
+  components:
+  - type: GasVentScrubber
+    wideNet: true
+    filterGases:
+    - Plasma
+
+- type: entity
+  parent: [AtmosMonitorIgnoreBase, GasVentScrubber]
+  id: GasVentScrubberTritium
+  suffix: additional_ZO, Tritium
+  components:
+  - type: GasVentScrubber
+    wideNet: true
+    filterGases:
+    - Tritium
+
+- type: entity
+  parent: [AtmosMonitorIgnoreBase, GasVentScrubber]
+  id: GasVentScrubberWaterVapor
+  suffix: additional_ZO, WaterVapor
+  components:
+  - type: GasVentScrubber
+    wideNet: true
+    filterGases:
+    - WaterVapor

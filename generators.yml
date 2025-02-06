@@ -1,0 +1,98 @@
+#use GeneratorBasic for 3kW
+
+#- GeneratorWallmountAPU5kW
+#- GeneratorWallmountAPU4kW
+#- GeneratorWallmountAPU2kW
+#- GeneratorWallmountAPU1kW
+#- GeneratorWallmountAPU500W
+
+#- id: GeneratorWallmountAPU5kW
+#- id: GeneratorWallmountAPU4kW
+#- id: GeneratorWallmountAPU2kW
+#- id: GeneratorWallmountAPU1kW
+#- id: GeneratorWallmountAPU500W
+
+
+- type: entity
+  abstract: true
+  parent: BaseGeneratorWallmount
+  id: GeneratorWallmountAPUbase
+  components:
+  - type: Construction
+    graph: WallmountGenerator
+    node: APU
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+
+- type: entity
+  parent: [ BaseGeneratorWallmount, GeneratorWallmountAPUbase ]
+  id: GeneratorWallmountAPU5kW
+  name: shuttle APU
+  description: An auxiliary power unit for a shuttle - 5kW.
+  suffix: additional_ZO, APU, 5kW
+  components:
+  - type: PowerSupplier
+    supplyRate: 5000
+  - type: StaticPrice
+    price: 38
+
+- type: entity
+  parent: [ BaseGeneratorWallmount, GeneratorWallmountAPUbase ]
+  id: GeneratorWallmountAPU4kW
+  name: shuttle APU
+  description: An auxiliary power unit for a shuttle - 4kW.
+  suffix: additional_ZO, APU, 4kW
+  components:
+  - type: PowerSupplier
+    supplyRate: 4000
+  - type: Construction
+    graph: WallmountGenerator
+    node: APU
+  - type: StaticPrice
+    price: 38
+
+- type: entity
+  parent: [ BaseGeneratorWallmount, GeneratorWallmountAPUbase ]
+  id: GeneratorWallmountAPU2kW
+  name: shuttle APU
+  description: An auxiliary power unit for a shuttle - 2kW.
+  suffix: additional_ZO, APU, 2kW
+  components:
+  - type: PowerSupplier
+    supplyRate: 2000
+  - type: Construction
+    graph: WallmountGenerator
+    node: APU
+  - type: StaticPrice
+    price: 38
+
+- type: entity
+  parent: [ BaseGeneratorWallmount, GeneratorWallmountAPUbase ]
+  id: GeneratorWallmountAPU1kW
+  name: shuttle APU
+  description: An auxiliary power unit for a shuttle - 1kW.
+  suffix: additional_ZO, APU, 1kW
+  components:
+  - type: PowerSupplier
+    supplyRate: 1000
+  - type: Construction
+    graph: WallmountGenerator
+    node: APU
+  - type: StaticPrice
+    price: 38
+
+- type: entity
+  parent: [ BaseGeneratorWallmount, GeneratorWallmountAPUbase ]
+  id: GeneratorWallmountAPU500W
+  name: shuttle APU
+  description: An auxiliary power unit for a shuttle - 500W.
+  suffix: additional_ZO, APU, 500W
+  components:
+  - type: PowerSupplier
+    supplyRate: 500
+  - type: Construction
+    graph: WallmountGenerator
+    node: APU
+  - type: StaticPrice
+    price: 38

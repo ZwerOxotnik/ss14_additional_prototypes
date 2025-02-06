@@ -1,0 +1,37 @@
+
+- type: entity
+  abstract: true
+  id: AtmosMonitorIgnoreBase
+  suffix: additional_ZO, ignore thresholds
+  components:
+    - type: AtmosMonitor
+      temperatureThresholdId: ignore
+      pressureThresholdId: ignore
+      gasThresholdPrototypes:
+        Oxygen: ignore
+        Nitrogen: ignore
+        CarbonDioxide: ignore
+        Plasma: ignore
+        Tritium: ignore
+        WaterVapor: ignore
+        Ammonia: ignore
+        NitrousOxide: ignore
+        Frezon: ignore
+
+- type: entity
+  id: AtmosMonitorDefaultBase
+  abstract: true
+  components:
+    - type: AtmosMonitor
+      temperatureThresholdId: stationTemperature
+      pressureThresholdId: stationPressure
+      gasThresholdPrototypes:
+        Oxygen: stationOxygen
+        Nitrogen: ignore
+        CarbonDioxide: stationCO2
+        Plasma: stationPlasma
+        Tritium: stationTritium
+        WaterVapor: stationWaterVapor
+        Ammonia: stationAmmonia
+        NitrousOxide: stationNO
+        Frezon: danger

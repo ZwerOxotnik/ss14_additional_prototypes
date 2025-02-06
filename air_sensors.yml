@@ -1,0 +1,32 @@
+#- AirSensorIgnoreThresholds
+#- AirSensorIgnoreGases
+
+#- id: AirSensorIgnoreThresholds
+#- id: AirSensorIgnoreGases
+
+
+- type: entity
+  id: AirSensorIgnoreThresholds
+  parent: [AirSensor, AtmosMonitorIgnoreBase]
+  name: air sensor
+  suffix: additional_ZO, ignore thresholds
+
+- type: entity
+  id: AirSensorIgnoreGases
+  parent: AirSensor
+  name: air sensor
+  suffix: additional_ZO, ignore gases
+  components:
+    - type: AtmosMonitor
+      temperatureThresholdId: stationTemperature
+      pressureThresholdId: stationPressure
+      gasThresholdPrototypes:
+        Oxygen: ignore
+        Nitrogen: ignore
+        CarbonDioxide: ignore
+        Plasma: ignore
+        Tritium: ignore
+        WaterVapor: ignore
+        Ammonia: ignore
+        NitrousOxide: ignore
+        Frezon: ignore
