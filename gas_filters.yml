@@ -1,3 +1,5 @@
+#- GasFilterNoneOn
+#- GasFilterNoneOnFlipped
 #- GasFilterAmmoniaOn
 #- GasFilterAmmoniaOnFlipped
 #- GasFilterCarbonDioxideOn
@@ -13,6 +15,8 @@
 #- GasFilterWaterVaporOn
 #- GasFilterWaterVaporOnFlipped
 
+#- id: GasFilterNoneOn
+#- id: GasFilterNoneOnFlipped
 #- id: GasFilterAmmoniaOn
 #- id: GasFilterAmmoniaOnFlipped
 #- id: GasFilterCarbonDioxideOn
@@ -28,6 +32,24 @@
 #- id: GasFilterWaterVaporOn
 #- id: GasFilterWaterVaporOnFlipped
 
+
+# Filter None
+- type: entity
+  parent: GasFilter
+  id: GasFilterNoneOn
+  suffix: On, None
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: GasFilter
+      startOnMapInit: true
+
+- type: entity
+  parent: [GasFilterFlipped, GasFilterOn]
+  id: GasFilterNoneOnFlipped
+  suffix: On, Flipped, None
+  placement:
+    mode: SnapgridCenter
 
 # Filter Ammonia
 - type: entity
