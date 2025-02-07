@@ -37,7 +37,7 @@
 - type: entity
   parent: GasFilter
   id: GasFilterNoneOn
-  suffix: On, None
+  suffix: additional_ZO, On, None
   placement:
     mode: SnapgridCenter
   components:
@@ -47,7 +47,7 @@
 - type: entity
   parent: [GasFilterFlipped, GasFilterOn]
   id: GasFilterNoneOnFlipped
-  suffix: On, Flipped, None
+  suffix: additional_ZO, On, Flipped, None
   placement:
     mode: SnapgridCenter
 
