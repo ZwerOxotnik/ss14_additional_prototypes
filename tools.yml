@@ -1,0 +1,31 @@
+- type: entity
+  parent: SprayPainter
+  id: SprayPainterExtended
+  name: spray painter+
+  description: A spray painter for painting airlocks and pipes.
+  suffix: additional_ZO
+  components:
+  - type: SprayPainter
+    colorPalette:
+      red: '#FF1212FF'
+      yellow: '#B3A234FF'
+      brown: '#947507FF'
+      green: '#3AB334FF'
+      cyan: '#03FCD3FF'
+      Celeste: '#c4f5ff'
+      blue: '#0335FCFF'
+      white: '#FFFFFFFF'
+      black: '#333333FF'
+      black2: '#363636'
+      orange: '#EDAE15'
+      # standard atmos pipes
+      waste: '#990000'
+      distro: '#0055cc'
+      air: '#03fcd3'
+      air2: '#ECECEC'
+      mix: '#947507'
+      nitrogen: '#D71014'
+      plasma: '#7e009e'
+      frezon: '#3a758c'
+      tritium: '#66FF33'
+      nitrousOxide: '#5d88c9'
